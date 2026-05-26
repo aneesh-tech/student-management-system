@@ -8,8 +8,8 @@ const connectDB = async () => {
         });
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);
+        console.error(`MongoDB connection error: ${error.message}. Retrying in 5 seconds...`);
+        setTimeout(connectDB, 5000);
     }
 };
 

@@ -5,7 +5,7 @@ A production-style microservices architecture for managing students, courses, an
 
 ### Architecture Diagram
 ```text
-[ Client ] -> [ API Gateway (5000) ]
+[ Client ] -> [ API Gateway (5050 -> 5000 internal) ]
                     |
       -------------------------------------
       |             |             |       |
@@ -41,8 +41,13 @@ docker-compose up --build
 - **Enrollments**: `POST /api/enrollments`, `GET /api/enrollments`, `DELETE /api/enrollments/:id`
 
 ### Documentation
-- **Swagger UI**: `http://localhost:5000/api-docs` (via Gateway) or individual service ports.
-- **GraphQL**: `http://localhost:5000/graphql` (needs further federation or individual access).
+- **Gateway API base URL**: `http://localhost:5050/api`
+- **Swagger UI (per service)**:
+  - Auth: `http://localhost:5001/api-docs`
+  - Student: `http://localhost:5002/api-docs`
+  - Course: `http://localhost:5003/api-docs`
+  - Enrollment: `http://localhost:5004/api-docs`
+- **GraphQL (per service)**:
   - Auth: `http://localhost:5001/graphql`
   - Student: `http://localhost:5002/graphql`
   - Course: `http://localhost:5003/graphql`
